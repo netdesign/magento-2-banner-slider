@@ -92,7 +92,10 @@ class AddBlock implements ObserverInterface
                     if ($value === Location::USING_SNIPPET_CODE) {
                         continue;
                     }
-                    [$pageType, $location] = explode('.', $value);
+                    // [$pageType, $location] = explode('.', $value); Doesn't work on PHP 7.0.3
+                    $DataArr = explode('.', $value);
+                    $pageType = $DataArr[0];
+                    $location = $DataArr[1];
                     if (($fullActionName === $pageType || $pageType === 'allpage') &&
                         strpos($location, $type) !== false
                     ) {
